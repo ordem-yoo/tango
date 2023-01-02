@@ -20,9 +20,23 @@ class _TangoScreenState extends State<TangoScreen> {
               Container(
                 child: Text(
                   "風邪を引く",
-                  style: tableJp,
+                  style: japanese,
                 ),
               ),
+              Container(
+                child: Text(
+                  "[카제오히쿠]",
+                  style: pronunciation,
+                ),
+              ),
+              Container(
+                child: Text(
+                  "감기에 걸리다.",
+                  style: korean,
+                ),
+              ),
+              TextButton(onPressed: () {}, child: Text("次の単語")),
+              TextButton(onPressed: () {}, child: Text("前の単語。")),
             ],
           ),
         ),
