@@ -2,10 +2,8 @@
 
 import 'package:flutter/material.dart';
 
-final textColor = TextStyle(
-  color: Colors.white,
-  fontSize: 25,
-);
+final textColor =
+    TextStyle(color: Colors.white, fontSize: 25, letterSpacing: 5);
 
 // Table Widget
 final tableJp = TextStyle(fontSize: 60, fontWeight: FontWeight.bold);
@@ -18,8 +16,9 @@ final listNum = TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
 
 // Color Palette
 
-// Tango
-final japanese = TextStyle(fontSize: 60, fontWeight: FontWeight.bold);
+// Tango List
+final japanese = TextStyle(fontSize: 70, fontWeight: FontWeight.bold);
+final hiragata = TextStyle(fontSize: 50, fontWeight: FontWeight.bold);
 final pronunciation =
     TextStyle(color: Colors.grey, fontSize: 25, fontWeight: FontWeight.bold);
 final korean = TextStyle(fontSize: 40, fontWeight: FontWeight.bold);
