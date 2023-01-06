@@ -45,7 +45,7 @@ class Post {
 
   factory Post.fromJson(Map<String, dynamic> json) {
     return Post(
-      booklist: json['book'][0],
+      booklist: json['book'],
       unitlist: json['book'][0],
       tangolist: json['book'],
       japanese: json['book'],
@@ -85,13 +85,10 @@ class _TangoScreenState extends State<TangoScreen> {
                 children: [
                   Column(
                     children: [
-                      tangoContainer(
-                          snapshot, tangoNumber, 'japanese', japanese),
-                      tangoContainer(
-                          snapshot, tangoNumber, 'hiragata', hiragata),
-                      tangoContainer(snapshot, tangoNumber, 'Pronunciation',
-                          pronunciation),
-                      tangoContainer(snapshot, tangoNumber, 'korean', korean),
+                      tangoContainer(snapshot, japanese, 0, 0, 0),
+                      tangoContainer(snapshot, hiragata, 0, 0, 0),
+                      tangoContainer(snapshot, pronunciation, 0, 0, 0),
+                      tangoContainer(snapshot, korean, 0, 0, 0),
                     ],
                   ),
                   SizedBox(
