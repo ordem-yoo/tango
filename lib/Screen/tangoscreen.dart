@@ -15,7 +15,7 @@ Future<Post> fetchPost() async {
   Uri();
 
   final response = await http.get(Uri.parse(
-      "https://gist.githubusercontent.com/ordem-yoo/d1b67b895f3d2ae163422a395e3e5801/raw/4be57a3d433f2606728e961d0e972375c1b7b245/testtango.json"));
+      "https://gist.githubusercontent.com/ordem-yoo/d1b67b895f3d2ae163422a395e3e5801/raw/aeb2e1b1cbe09bf6252b88e7ab865d7016b68bec/tango.json"));
 
   if (response.statusCode == 200) {
     return Post.fromJson(json.decode(response.body));
@@ -30,7 +30,7 @@ class Post {
   var tangolist;
   var japanese;
   var hiragata;
-  var Pronunciation;
+  var pronunciation;
   var korean;
 
   Post({
@@ -39,23 +39,19 @@ class Post {
     required this.tangolist,
     required this.japanese,
     required this.hiragata,
-    required this.Pronunciation,
+    required this.pronunciation,
     required this.korean,
   });
 
   factory Post.fromJson(Map<String, dynamic> json) {
     return Post(
-      booklist: json['books']['booklist'],
-      unitlist: json['books']['booklist'][0]['unitlist'],
-      tangolist: json['books']['booklist'][0]['unitlist'][0]['tangolist'],
-      japanese: json['books']['booklist'][0]['unitlist'][0]['tangolist'][0]
-          ['japanese'],
-      hiragata: json['books']['booklist'][0]['unitlist'][0]['tangolist'][0]
-          ['hiragata'],
-      Pronunciation: json['books']['booklist'][0]['unitlist'][0]['tangolist'][0]
-          ['Pronunciation'],
-      korean: json['books']['booklist'][0]['unitlist'][0]['tangolist'][0]
-          ['korean'],
+      booklist: json['book'][0],
+      unitlist: json['book'][0],
+      tangolist: json['book'],
+      japanese: json['book'],
+      hiragata: json['book'],
+      pronunciation: json['book'],
+      korean: json['book'],
     );
   }
 }
