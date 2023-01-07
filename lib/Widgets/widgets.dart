@@ -8,11 +8,12 @@ import 'package:tango/constants.dart';
 import '../Screen/tangoscreen.dart';
 
 Padding tangoContainer(AsyncSnapshot<Post> snapshot, TextStyle font,
-    int bookNumber, int unitNumber, int tangoNumber) {
+    int unitNumber, int tangoNumber, String category) {
   return Padding(
     padding: const EdgeInsets.symmetric(vertical: 20),
     child: Text(
-      "${snapshot.data?.booklist[9][0][0]}",
+      // snapshot.data?.booklist[unitlist][tangonumber][category]
+      "${snapshot.data?.booklist[9][tangoNumber][category]}",
       style: font,
     ),
   );

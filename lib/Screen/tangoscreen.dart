@@ -25,13 +25,13 @@ Future<Post> fetchPost() async {
 }
 
 class Post {
-  int booklist;
-  int unitNumber;
-  int tangoNumber;
-  String japanese;
-  String hiragata;
-  String pronunciation;
-  String korean;
+  var booklist;
+  var unitNumber;
+  var tangoNumber;
+  var japanese;
+  var hiragata;
+  var pronunciation;
+  var korean;
 
   Post({
     required this.booklist,
