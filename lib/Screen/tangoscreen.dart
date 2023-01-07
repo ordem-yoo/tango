@@ -25,18 +25,18 @@ Future<Post> fetchPost() async {
 }
 
 class Post {
-  var booklist;
-  var unitlist;
-  var tangolist;
-  var japanese;
-  var hiragata;
-  var pronunciation;
-  var korean;
+  int booklist;
+  int unitNumber;
+  int tangoNumber;
+  String japanese;
+  String hiragata;
+  String pronunciation;
+  String korean;
 
   Post({
     required this.booklist,
-    required this.unitlist,
-    required this.tangolist,
+    required this.unitNumber,
+    required this.tangoNumber,
     required this.japanese,
     required this.hiragata,
     required this.pronunciation,
@@ -46,12 +46,12 @@ class Post {
   factory Post.fromJson(Map<String, dynamic> json) {
     return Post(
       booklist: json['book'],
-      unitlist: json['book'][0],
-      tangolist: json['book'],
-      japanese: json['book'],
-      hiragata: json['book'],
-      pronunciation: json['book'],
-      korean: json['book'],
+      unitNumber: json['book'][0],
+      tangoNumber: json['book']['unitNumber']['tangoNumber'],
+      japanese: json['book']['unitNumber']['tangoNumber']['japanese'],
+      hiragata: json['book']['unitNumber']['tangoNumber']['hiragata'],
+      pronunciation: json['book']['unitNumber']['tangoNumber']['pronuncitaion'],
+      korean: json['book']['unitNumber']['tangoNumber']['korean'],
     );
   }
 }
@@ -64,6 +64,7 @@ class TangoScreen extends StatefulWidget {
 class _TangoScreenState extends State<TangoScreen> {
   late Future<Post> post;
   int tangoNumber = 0;
+  int selectedUnitNumber = 0;
 
   @override
   void initState() {
@@ -85,10 +86,14 @@ class _TangoScreenState extends State<TangoScreen> {
                 children: [
                   Column(
                     children: [
-                      tangoContainer(snapshot, japanese, 0, 0, 0),
-                      tangoContainer(snapshot, hiragata, 0, 0, 0),
-                      tangoContainer(snapshot, pronunciation, 0, 0, 0),
-                      tangoContainer(snapshot, korean, 0, 0, 0),
+                      tangoContainer(
+                          snapshot, japanese, 9, tangoNumber, "japanese"),
+                      tangoContainer(
+                          snapshot, hiragata, 9, tangoNumber, "hiragata"),
+                      tangoContainer(snapshot, pronunciation, 9, tangoNumber,
+                          "pronunciation"),
+                      tangoContainer(
+                          snapshot, korean, 9, tangoNumber, "korean"),
                     ],
                   ),
                   SizedBox(
@@ -110,7 +115,7 @@ class _TangoScreenState extends State<TangoScreen> {
                           setState(() {
                             if (tangoNumber == 0) {
                               tangoNumber =
-                                  (snapshot.data?.tangolist.length) - 1;
+                                  (snapshot.data?.booklist[9].length) - 1;
                             } else {
                               tangoNumber--;
                             }
@@ -137,7 +142,7 @@ class _TangoScreenState extends State<TangoScreen> {
                         onPressed: () {
                           setState(() {
                             if (tangoNumber ==
-                                (snapshot.data?.tangolist.length) - 1) {
+                                (snapshot.data?.booklist[9].length) - 1) {
                               tangoNumber = 0;
                             } else {
                               tangoNumber++;
