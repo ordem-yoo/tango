@@ -4,20 +4,20 @@
 import 'package:flutter/material.dart';
 
 // Screen
-import '../Screen/booklist.dart';
 import '../Screen/tangoscreen.dart';
 
 // Constants
 import '../constants.dart';
 
-Widget UnitList(String number, title, subtitle, dynamic contexts) {
+Widget UnitList(String indexNumber, title, subtitle, dynamic contexts) {
+  indexNumber;
   return Padding(
     padding: EdgeInsets.fromLTRB(4.0, 16.0, 4.0, 0),
     child: ListTile(
       dense: true,
       horizontalTitleGap: 0.0,
       contentPadding: EdgeInsets.only(left: 1.0),
-      leading: Text(number, style: listNum),
+      leading: Text('$indexNumber' '.', style: listNum),
       title: Text(title, style: listJp),
       subtitle: Text(
         subtitle,
@@ -31,7 +31,7 @@ Widget UnitList(String number, title, subtitle, dynamic contexts) {
           child: Text('スタート'),
           onPressed: () {
             Navigator.push(contexts, MaterialPageRoute(builder: (contexts) {
-              return TangoScreen();
+              return TangoScreen(indexNumber);
             }));
           }),
     ),

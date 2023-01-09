@@ -1,4 +1,4 @@
-// ignore_for_file: use_key_in_widget_constructors, prefer_const_literals_to_create_immutables, file_names, avoid_unnecessary_containers, prefer_const_constructors
+// ignore_for_file: use_key_in_widget_constructors, prefer_const_literals_to_create_immutables, file_names, avoid_unnecessary_containers, prefer_const_constructors, must_be_immutable
 
 // Package
 import 'package:flutter/material.dart';
@@ -57,6 +57,9 @@ class Post {
 }
 
 class TangoScreen extends StatefulWidget {
+  TangoScreen(String indexNumber);
+  int unitNumber = int.parse(TangoScreen.indexNumber);
+
   @override
   State<TangoScreen> createState() => _TangoScreenState();
 }
@@ -86,8 +89,8 @@ class _TangoScreenState extends State<TangoScreen> {
                 children: [
                   Column(
                     children: [
-                      tangoContainer(
-                          snapshot, japanese, 9, tangoNumber, "japanese"),
+                      tangoContainer(snapshot, japanese, indexNumber,
+                          tangoNumber, "japanese"),
                       tangoContainer(
                           snapshot, hiragata, 9, tangoNumber, "hiragata"),
                       tangoContainer(snapshot, pronunciation, 9, tangoNumber,
