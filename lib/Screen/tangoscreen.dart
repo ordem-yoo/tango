@@ -47,18 +47,17 @@ class Post {
     return Post(
       booklist: json['book'],
       unitNumber: json['book'][0],
-      tangoNumber: json['book']['unitNumber']['tangoNumber'],
-      japanese: json['book']['unitNumber']['tangoNumber']['japanese'],
-      hiragata: json['book']['unitNumber']['tangoNumber']['hiragata'],
-      pronunciation: json['book']['unitNumber']['tangoNumber']['pronuncitaion'],
-      korean: json['book']['unitNumber']['tangoNumber']['korean'],
+      tangoNumber: json['book'][0],
+      japanese: json['book'][0][0],
+      hiragata: json['book'][0][0],
+      pronunciation: json['book'][0][0],
+      korean: json['book'][0][0],
     );
   }
 }
 
 class TangoScreen extends StatefulWidget {
-  TangoScreen(String indexNumber);
-  int unitNumber = int.parse(TangoScreen.indexNumber);
+  const TangoScreen(String indexNumber);
 
   @override
   State<TangoScreen> createState() => _TangoScreenState();
@@ -89,8 +88,8 @@ class _TangoScreenState extends State<TangoScreen> {
                 children: [
                   Column(
                     children: [
-                      tangoContainer(snapshot, japanese, indexNumber,
-                          tangoNumber, "japanese"),
+                      tangoContainer(
+                          snapshot, japanese, 9, tangoNumber, "japanese"),
                       tangoContainer(
                           snapshot, hiragata, 9, tangoNumber, "hiragata"),
                       tangoContainer(snapshot, pronunciation, 9, tangoNumber,
