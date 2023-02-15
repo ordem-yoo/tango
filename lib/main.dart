@@ -1,23 +1,24 @@
-// ignore_for_file: use_key_in_widget_constructors
+// ignore_for_file: use_key_in_widget_constructors, prefer_const_constructors
 
 // Package
 import 'package:flutter/material.dart';
 
 // Screen
-import 'Screen/mainscreen.dart';
+import 'Screen/home_Screen.dart';
 
 void main() {
   runApp(
-    Home(),
+    App(),
   );
 }
 
-class Home extends StatelessWidget {
+class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: ThemeData(useMaterial3: true),
       debugShowCheckedModeBanner: false,
-      home: MainScreen(),
+      home: Home(),
     );
   }
 }

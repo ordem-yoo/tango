@@ -1,22 +1,25 @@
-// ignore_for_file: prefer_const_constructors, file_names, use_key_in_widget_constructors
+// ignore_for_file: prefer_const_constructors, file_names
 
 // Package
 import 'package:flutter/material.dart';
+import 'package:tango/screen/list_Screen.dart';
 
-// Page
-import 'hiragata.dart';
-import 'booklist.dart';
+// Dart file
+import '../constants.dart';
+import 'kana_Screen.dart';
 
-class MainScreen extends StatefulWidget {
+class Home extends StatefulWidget {
+  const Home({super.key});
+
   @override
-  State<MainScreen> createState() => _MainScreenState();
+  State<Home> createState() => _HomeState();
 }
 
-class _MainScreenState extends State<MainScreen> {
+class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xff1D2671),
+      backgroundColor: Color(0xffB5D99C),
       body: SafeArea(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -24,14 +27,14 @@ class _MainScreenState extends State<MainScreen> {
             Text(
               "単語",
               style: TextStyle(
-                color: Color(0xffFAFFD1),
+                color: Color(0xffFFFFFF),
                 fontSize: 80,
               ),
             ),
             Text(
               "Tango",
               style: TextStyle(
-                color: Color(0xffFAFFD1),
+                color: Color(0xffFFFFFF),
                 fontSize: 25,
               ),
             ),
@@ -42,17 +45,10 @@ class _MainScreenState extends State<MainScreen> {
               child: Container(
                 width: double.infinity,
                 decoration: BoxDecoration(
-                    color: Color(0xffFAFFD1),
+                    color: Color(0xffE65F5c),
                     borderRadius: BorderRadius.circular(15)),
                 child: TextButton(
-                  child: Text(
-                    "単語暗記",
-                    style: TextStyle(
-                        color: Color(0xff19547b),
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                        letterSpacing: 5.0),
-                  ),
+                  child: Text("単語暗記", style: homeButton),
                   onPressed: () {
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) {
@@ -68,27 +64,20 @@ class _MainScreenState extends State<MainScreen> {
               child: Container(
                 width: double.infinity,
                 decoration: BoxDecoration(
-                    color: Color(0xffFAFFD1),
+                    color: Color(0xffE65F5c),
                     borderRadius: BorderRadius.circular(15)),
                 child: TextButton(
-                  child: Text(
-                    "ひらがな  カタカナ",
-                    style: TextStyle(
-                        color: Color(0xff19547b),
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                        letterSpacing: 5.0),
-                  ),
+                  child: Text("仮名", style: homeButton),
                   onPressed: () {
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) {
-                      return HiraGata();
+                      return Kana();
                     }));
                   },
                 ),
               ),
             ),
-            // Button 3
+            // // Button 3
             // Padding(
             //   padding: const EdgeInsets.fromLTRB(32.0, 16.0, 32.0, 16.0),
             //   child: Container(
@@ -97,13 +86,7 @@ class _MainScreenState extends State<MainScreen> {
             //         color: Colors.white,
             //         borderRadius: BorderRadius.circular(15)),
             //     child: TextButton(
-            //       child: Text(
-            //         "単語暗記",
-            //         style: TextStyle(
-            //             fontSize: 20,
-            //             fontWeight: FontWeight.bold,
-            //             letterSpacing: 5.0),
-            //       ),
+            //       child: Text("単語暗記", style: homeButton),
             //       onPressed: () {},
             //     ),
             //   ),
