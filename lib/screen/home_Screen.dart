@@ -77,20 +77,6 @@ class _HomeState extends State<Home> {
                 ),
               ),
             ),
-            // // Button 3
-            // Padding(
-            //   padding: const EdgeInsets.fromLTRB(32.0, 16.0, 32.0, 16.0),
-            //   child: Container(
-            //     width: double.infinity,
-            //     decoration: BoxDecoration(
-            //         color: Colors.white,
-            //         borderRadius: BorderRadius.circular(15)),
-            //     child: TextButton(
-            //       child: Text("単語暗記", style: homeButton),
-            //       onPressed: () {},
-            //     ),
-            //   ),
-            // ),
           ],
         ),
       ),
