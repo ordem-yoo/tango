@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, file_names
+// ignore_for_file: prefer_const_constructors, file_names, use_key_in_widget_constructors
 
 // Package
 import 'package:flutter/material.dart';
@@ -9,8 +9,6 @@ import '../constants.dart';
 import 'kana_Screen.dart';
 
 class Home extends StatefulWidget {
-  const Home({super.key});
-
   @override
   State<Home> createState() => _HomeState();
 }
@@ -52,7 +50,7 @@ class _HomeState extends State<Home> {
                   onPressed: () {
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) {
-                      return BookList();
+                      return BookInfo();
                     }));
                   },
                 ),

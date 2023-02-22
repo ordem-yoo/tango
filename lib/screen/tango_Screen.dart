@@ -3,11 +3,27 @@
 // Packages
 import 'package:flutter/material.dart';
 import 'package:tango/constants.dart';
+import 'package:tango/screen/list_Screen.dart';
 import 'dart:convert';
+import 'package:http/http.dart' as http;
 
-//
-import '../customWidgets/tangoContainer.dart';
-import '../function/getData.dart';
+// Widget&Class
+import '../class/class.dart';
+
+Future<TangoList> fetchTangoList() async {
+  final response = await http.get(Uri.parse(
+      'https://gist.githubusercontent.com/ordem-yoo/d1b67b895f3d2ae163422a395e3e5801/raw/3c9d7c8a0ed958b9ba8fd8ee9d42e6483387c82e/tango.json'));
+
+  if (response.statusCode == 200) {
+    // If the server did return a 200 OK response,
+    // then parse the JSON.
+    return TangoList.fromJson(jsonDecode(response.body));
+  } else {
+    // If the server did not return a 200 OK response,
+    // then throw an exception.
+    throw Exception('Failed to load album');
+  }
+}
 
 class Tango extends StatefulWidget {
   @override
@@ -16,10 +32,11 @@ class Tango extends StatefulWidget {
 
 class _TangoState extends State<Tango> {
   late Future<TangoList> tangoList;
+
   @override
   void initState() {
     super.initState();
-    tangoList = fetchTango();
+    tangoList = fetchTangoList();
   }
 
   Widget build(BuildContext context) {
@@ -29,53 +46,13 @@ class _TangoState extends State<Tango> {
             future: tangoList,
             builder: (context, snapshot) {
               if (snapshot.hasData) {
-                return TangoContainer();
+                return Container();
               } else if (snapshot.hasError) {
                 return Text('${snapshot.error}');
               }
-
               return CircularProgressIndicator();
             }),
       ),
     );
   }
 }
-
-
-// Column(
-//           mainAxisAlignment: MainAxisAlignment.center,
-//           children: [
-//             SizedBox(
-//               height: MediaQuery.of(context).size.height * 0.4,
-//               child: Center(
-//                 child: Column(
-//                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//                   children: [
-//                     Text("kanji", style: kanji),
-//                     Text('hiragana', style: hiragana),
-//                     Text('pronunciation', style: pronunciation),
-//                     Text("korean", style: korean),
-//                   ],
-//                 ),
-//               ),
-//             ),
-//             SizedBox(height: 100),
-//             TextButton(
-//                 style: ButtonStyle(
-//                   backgroundColor: MaterialStateProperty.all(Color(0xffB5D99C)),
-//                   foregroundColor: MaterialStateProperty.all(Colors.white),
-//                 ),
-//                 onPressed: () {},
-//                 child: Text("Next")),
-//             SizedBox(
-//               height: 50,
-//             ),
-//             TextButton(
-//                 style: ButtonStyle(
-//                   backgroundColor: MaterialStateProperty.all(Color(0xffB5D99C)),
-//                   foregroundColor: MaterialStateProperty.all(Colors.white),
-//                 ),
-//                 onPressed: () {},
-//                 child: Text("Previous")),
-//           ],
-//         ),
