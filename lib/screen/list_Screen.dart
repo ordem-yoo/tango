@@ -11,15 +11,10 @@ import '../class/class.dart';
 
 Future<BookList> fetchBookList() async {
   final response = await http.get(Uri.parse(
-      'https://gist.githubusercontent.com/ordem-yoo/d1b67b895f3d2ae163422a395e3e5801/raw/3c9d7c8a0ed958b9ba8fd8ee9d42e6483387c82e/tango.json'));
-
+      'https://gist.githubusercontent.com/ordem-yoo/d1b67b895f3d2ae163422a395e3e5801/raw/a1d8c38aa21f911b8e2883dde9317673af0c55fd/tango.json'));
   if (response.statusCode == 200) {
-    // If the server did return a 200 OK response,
-    // then parse the JSON.
     return BookList.fromJson(jsonDecode(response.body));
   } else {
-    // If the server did not return a 200 OK response,
-    // then throw an exception.
     throw Exception('Failed to load album');
   }
 }
@@ -55,17 +50,17 @@ class _BookInfoState extends State<BookInfo> {
                       indicatorColor: Colors.white,
                       tabs: [
                         Tab(
-                            child: Text(bookList.toString(),
+                            child: Text(snapshot.data!.book[0]["booktitle"],
                                 style: TextStyle(
                                     fontSize: 25,
                                     fontFamily: 'ZenKakuGothicAntique'))),
                         Tab(
-                            child: Text('下券',
+                            child: Text(snapshot.data!.book[1]["booktitle"],
                                 style: TextStyle(
                                     fontSize: 25,
                                     fontFamily: 'ZenKakuGothicAntique'))),
                         Tab(
-                            child: Text('N4·5',
+                            child: Text(snapshot.data!.book[2]["booktitle"],
                                 style: TextStyle(
                                     fontSize: 25,
                                     fontFamily: 'ZenKakuGothicAntique'))),
@@ -74,15 +69,18 @@ class _BookInfoState extends State<BookInfo> {
                   } else if (snapshot.hasError) {
                     return Text('${snapshot.error}');
                   }
-                  return CircularProgressIndicator();
+                  return Center(
+                      child: CircularProgressIndicator(
+                    color: Colors.transparent,
+                  ));
                 }),
           ),
         ),
         body: TabBarView(
           children: [
-            UnitList(),
-            UnitList(),
-            UnitList(),
+            UnitList(unitTitleNumber: 0),
+            UnitList(unitTitleNumber: 1),
+            UnitList(unitTitleNumber: 2),
           ],
         ),
       ),
