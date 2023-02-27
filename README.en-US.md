@@ -18,7 +18,7 @@ Application development for studying Japanese.
 <br><br>
 
 ## Detailed content
-### 기술 스택 및 개발 환경
+### Skill & IDE
 <a href="https://flutter.dev" target="_blank" rel="noreferrer">
 <img src="https://www.vectorlogo.zone/logos/flutterio/flutterio-icon.svg"alt="플러터" title="플러터" width="50"/></a>&nbsp;&nbsp;&nbsp;<a href="https://dart.dev" target="_blank" rel="noreferrer">
 <img src="https://www.vectorlogo.zone/logos/dartlang/dartlang-icon.svg"alt="다트" title="다트" width="50"/></a>&nbsp;&nbsp;&nbsp;<a href="https://dart.dev" target="_blank" rel="noreferrer">
@@ -27,12 +27,12 @@ Application development for studying Japanese.
 <br><br>
 
 
-### 사용한 패키지
+### Used package
 - [http 0.13.5](https://pub.dev/packages/http)
 <br><br>
 
-### 버전
+### version
 **Ver 1.0**
-- 각 책, 단원별로 단어장 구현
-- 히라가나, 가타카나표 구현
+- Implementation of a vocabulary book for each book and unit.
+- Hiragana, Katakana table implementation
 <br><br>
