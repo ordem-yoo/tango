@@ -1,7 +1,7 @@
 # Tango
-<br>
-<br>
-<img src="https://i.ibb.co/CPZbp2y/upscale-tango-removebg.png" height="20%">
+<br><br>
+
+<img src="https://i.ibb.co/CPZbp2y/upscale-tango-removebg.png" width="100" height="100">
 <br><br>
 
 
