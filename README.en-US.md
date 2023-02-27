@@ -9,21 +9,23 @@
 <br><br>
 
 
-## 기획 의도
-일본어 공부를 위한 어플리케이션 개발
+## Intention of the plan
+Application development for studying Japanese.
 <br><br>
 
-## 개발 기간
+## Development period
 **2023/01/01 ~ 2023/02/15**
 <br><br>
 
-## 세부 내용
+## Detailed content
 ### 기술 스택 및 개발 환경
 <a href="https://flutter.dev" target="_blank" rel="noreferrer">
 <img src="https://www.vectorlogo.zone/logos/flutterio/flutterio-icon.svg"alt="플러터" title="플러터" width="50"/></a>&nbsp;&nbsp;&nbsp;<a href="https://dart.dev" target="_blank" rel="noreferrer">
 <img src="https://www.vectorlogo.zone/logos/dartlang/dartlang-icon.svg"alt="다트" title="다트" width="50"/></a>&nbsp;&nbsp;&nbsp;<a href="https://dart.dev" target="_blank" rel="noreferrer">
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg"alt="VS Code" title="Visual Studio Code" width="50"/></a>
+
 <br><br>
+
 
 ### 사용한 패키지
 - [http 0.13.5](https://pub.dev/packages/http)
