@@ -22,7 +22,7 @@
 <a href="https://flutter.dev" target="_blank" rel="noreferrer">
 <img src="https://www.vectorlogo.zone/logos/flutterio/flutterio-icon.svg"alt="플러터" title="플러터" width="50"/></a>&nbsp;&nbsp;&nbsp;<a href="https://dart.dev" target="_blank" rel="noreferrer">
 <img src="https://www.vectorlogo.zone/logos/dartlang/dartlang-icon.svg"alt="다트" title="다트" width="50"/></a>&nbsp;&nbsp;&nbsp;<a href="https://dart.dev" target="_blank" rel="noreferrer">
-<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg"alt="VS Code" title="Visual Studio Code" width="50"/></a>
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg"alt="비주얼 스튜디오 코드" title="Visual Studio Code" width="50"/></a>
 <br><br>
 
 ### 사용한 패키지

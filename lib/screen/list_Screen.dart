@@ -4,14 +4,14 @@
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:tango/constants.dart';
 
 // Widget&Class
 import 'package:tango/customWidgets/unitList.dart';
 import '../class/class.dart';
 
 Future<BookList> fetchBookList() async {
-  final response = await http.get(Uri.parse(
-      'https://gist.githubusercontent.com/ordem-yoo/d1b67b895f3d2ae163422a395e3e5801/raw/a1d8c38aa21f911b8e2883dde9317673af0c55fd/tango.json'));
+  final response = await http.get(Uri.parse(link));
   if (response.statusCode == 200) {
     return BookList.fromJson(jsonDecode(response.body));
   } else {

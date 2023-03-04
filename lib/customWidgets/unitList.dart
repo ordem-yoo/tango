@@ -11,8 +11,8 @@ import '../constants.dart';
 import '../screen/tango_Screen.dart';
 
 Future<BookList> fetchBookList() async {
-  final response = await http.get(Uri.parse(
-      "https://gist.githubusercontent.com/ordem-yoo/d1b67b895f3d2ae163422a395e3e5801/raw/a1d8c38aa21f911b8e2883dde9317673af0c55fd/tango.json"));
+  final response = await http.get(Uri.parse(link));
+
   if (response.statusCode == 200) {
     return BookList.fromJson(jsonDecode(response.body));
   } else {
@@ -48,35 +48,55 @@ class _UnitListState extends State<UnitList> {
           return ListView.builder(
               itemCount: snapshot.data!.book[unitNumber]["unit"].length,
               itemBuilder: (BuildContext context, int unitIndex) {
-                return ListTile(
-                  horizontalTitleGap: 2.5,
-                  contentPadding: EdgeInsets.only(left: 8.0),
-                  leading: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text(
-                      "${unitIndex + 1}",
-                      textAlign: TextAlign.center,
-                      style: listNum,
+                return Padding(
+                  padding: const EdgeInsets.only(top: 24.0),
+                  child: ListTile(
+                    horizontalTitleGap: 3.5,
+                    contentPadding: EdgeInsets.only(left: 4.0),
+                    leading: Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: Text(
+                        "${unitIndex + 1}",
+                        textAlign: TextAlign.center,
+                        style: listNum,
+                      ),
                     ),
-                  ),
-                  title: Text(
-                    snapshot.data!.book[unitNumber]["unit"][unitIndex]["title"],
-                    style: listJp,
-                  ),
-                  subtitle: Text(
-                      snapshot.data!.book[unitNumber]["unit"][unitIndex]
-                          ["subtitle"],
-                      style: listKr),
-                  trailing: TextButton(
-                    autofocus: true,
-                    child: Text('暗記'),
-                    onPressed: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) {
-                        return Tango(
-                            unitnumber: unitNumber, indexNumber: unitIndex);
-                      }));
-                    },
+                    title: SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Text(
+                        snapshot.data!.book[unitNumber]["unit"][unitIndex]
+                            ["title"],
+                        style: listJp,
+                      ),
+                    ),
+                    subtitle: snapshot.data!.book[unitNumber]["unit"][unitIndex]
+                                ["subtitle"] !=
+                            null
+                        ? Text(
+                            snapshot.data!.book[unitNumber]["unit"][unitIndex]
+                                ["subtitle"],
+                            style: listKr)
+                        : null,
+                    trailing: Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 8.0),
+                      child: TextButton(
+                        autofocus: true,
+                        style: TextButton.styleFrom(
+                          backgroundColor: Color(0xffB5D99C),
+                        ),
+                        child: Text(
+                          '暗記',
+                          style: TextStyle(color: Colors.white),
+                        ),
+                        onPressed: () {
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (context) {
+                            return Tango(
+                                unitnumber: unitNumber, indexNumber: unitIndex);
+                          }));
+                        },
+                      ),
+                    ),
                   ),
                 );
               });
