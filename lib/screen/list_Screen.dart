@@ -8,8 +8,10 @@ import 'package:tango/constants.dart';
 
 // Widget&Class
 import 'package:tango/customWidgets/unitList.dart';
-import '../class/class.dart';
+import 'package:tango/main.dart';
+import '../class/bookList.dart';
 
+int unitLength = 0;
 Future<BookList> fetchBookList() async {
   final response = await http.get(Uri.parse(link));
   if (response.statusCode == 200) {
@@ -35,55 +37,53 @@ class _BookInfoState extends State<BookInfo> {
 
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-      length: 3,
-      child: Scaffold(
-        appBar: AppBar(
-          automaticallyImplyLeading: false,
-          backgroundColor: Color(0xffB5D99C),
-          flexibleSpace: SafeArea(
-            child: FutureBuilder<BookList>(
-                future: bookList,
-                builder: (context, snapshot) {
-                  if (snapshot.hasData) {
-                    return TabBar(
-                      indicatorColor: Colors.white,
-                      tabs: [
-                        Tab(
-                            child: Text(snapshot.data!.book[0]["booktitle"],
-                                style: TextStyle(
-                                    fontSize: 25,
-                                    fontFamily: 'ZenKakuGothicAntique'))),
-                        Tab(
-                            child: Text(snapshot.data!.book[1]["booktitle"],
-                                style: TextStyle(
-                                    fontSize: 25,
-                                    fontFamily: 'ZenKakuGothicAntique'))),
-                        Tab(
-                            child: Text(snapshot.data!.book[2]["booktitle"],
-                                style: TextStyle(
-                                    fontSize: 25,
-                                    fontFamily: 'ZenKakuGothicAntique'))),
-                      ],
-                    );
-                  } else if (snapshot.hasError) {
-                    return Text('${snapshot.error}');
-                  }
-                  return Center(
-                      child: CircularProgressIndicator(
-                    color: Colors.transparent,
-                  ));
-                }),
+    List<Widget> tabbar = [];
+    List<Widget> unitList = [];
+
+    return FutureBuilder<BookList>(
+      future: bookList,
+      builder: (context, snapshot) {
+        if (snapshot.hasData) {
+          unitLength = snapshot.data!.book.length;
+          for (int n = 0; n < unitLength; n++) {
+            unitList.add(
+              UnitList(unitTitleNumber: n),
+            );
+          }
+          for (int n = 0; n < unitLength; n++) {
+            tabbar.add(
+              Tab(
+                  child: Text(snapshot.data!.book[n]["booktitle"],
+                      style: TextStyle(
+                          fontSize: 25, fontFamily: 'ZenKakuGothicAntique'))),
+            );
+          }
+          return DefaultTabController(
+            length: unitLength,
+            child: Scaffold(
+              appBar: AppBar(
+                automaticallyImplyLeading: false,
+                backgroundColor: Color(0xffB5D99C),
+                flexibleSpace: SafeArea(
+                  child: TabBar(
+                    isScrollable: true,
+                    indicatorColor: Colors.white,
+                    tabs: tabbar,
+                  ),
+                ),
+              ),
+              body: TabBarView(children: unitList),
+            ),
+          );
+        } else if (snapshot.hasError) {
+          return Text('${snapshot.error}');
+        }
+        return Center(
+          child: CircularProgressIndicator(
+            color: Colors.transparent,
           ),
-        ),
-        body: TabBarView(
-          children: [
-            UnitList(unitTitleNumber: 0),
-            UnitList(unitTitleNumber: 1),
-            UnitList(unitTitleNumber: 2),
-          ],
-        ),
-      ),
+        );
+      },
     );
   }
 }

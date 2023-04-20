@@ -2,25 +2,22 @@
 
 // Packages
 import 'package:flutter/material.dart';
-import 'package:tango/constants.dart';
-import 'package:tango/screen/list_Screen.dart';
+import 'package:flutter_tts/flutter_tts.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 // Widget&Class
-import '../class/class.dart';
+import 'package:tango/constants.dart';
+import 'package:tango/screen/list_Screen.dart';
+import '../class/bookList.dart';
 
 Future<BookList> fetchBookList() async {
   final response = await http.get(Uri.parse(link));
 
   if (response.statusCode == 200) {
-    // If the server did return a 200 OK response,
-    // then parse the JSON.
     return BookList.fromJson(jsonDecode(response.body));
   } else {
-    // If the server did not return a 200 OK response,
-    // then throw an exception.
-    throw Exception('Failed to load album');
+    throw Exception('Failed to load unit');
   }
 }
 
@@ -34,9 +31,16 @@ class Tango extends StatefulWidget {
 }
 
 class _TangoState extends State<Tango> {
+  FlutterTts flutterTts = FlutterTts();
+
   late Future<BookList> bookList;
   int? unitNumber, unitIndex;
   int tangoNumber = 0;
+  double volume = 0.8;
+  double pitch = 1.0;
+  double speechRate = 0.5;
+  String langCode = "ja-JP";
+  List<String>? languages;
 
   _TangoState({required this.unitNumber, this.unitIndex});
 
@@ -44,8 +48,15 @@ class _TangoState extends State<Tango> {
   void initState() {
     super.initState();
     bookList = fetchBookList();
+    init();
   }
 
+  void init() async {
+    languages = List<String>.from(await flutterTts.getLanguages);
+    setState(() {});
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
@@ -69,7 +80,7 @@ class _TangoState extends State<Tango> {
                             child: Text(
                               tangoJson[tangoNumber]["kanji"]
                                   .replaceAll('を', 'を '),
-                              style: kanji,
+                              style: kanjiStyle,
                               textAlign: TextAlign.center,
                             ),
                           ),
@@ -79,7 +90,7 @@ class _TangoState extends State<Tango> {
                             child: tangoJson[tangoNumber]["hiragana"] != null
                                 ? Text(
                                     tangoJson[tangoNumber]["hiragana"],
-                                    style: hiragana,
+                                    style: ganaKanaStyle,
                                     textAlign: TextAlign.center,
                                   )
                                 : null,
@@ -89,7 +100,7 @@ class _TangoState extends State<Tango> {
                                 vertical: 30.0, horizontal: 40.0),
                             child: Text(
                               tangoJson[tangoNumber]["pronunciation"],
-                              style: pronunciation,
+                              style: pronunciationStyle,
                               textAlign: TextAlign.center,
                             ),
                           ),
@@ -99,13 +110,17 @@ class _TangoState extends State<Tango> {
                             child: Text(
                               tangoJson[tangoNumber]["korean"]
                                   .replaceAll(', ', '\n'),
-                              style: korean,
+                              style: koreanStyle,
                               textAlign: TextAlign.center,
                             ),
                           ),
-                          SizedBox(
-                            height: 50,
-                          ),
+                          IconButton(
+                              icon: Icon(Icons.volume_up_rounded, size: 40),
+                              onPressed: () async {
+                                initSetting();
+                                await flutterTts
+                                    .speak(tangoJson[tangoNumber]["kanji"]);
+                              }),
                         ],
                       ),
                     ),
@@ -136,7 +151,7 @@ class _TangoState extends State<Tango> {
                           ),
                         ),
                         SizedBox(
-                          height: 50,
+                          height: 40,
                         ),
                         Padding(
                           padding: EdgeInsets.symmetric(horizontal: 16.0),
@@ -173,5 +188,12 @@ class _TangoState extends State<Tango> {
             }),
       ),
     );
+  }
+
+  void initSetting() async {
+    await flutterTts.setVolume(volume);
+    await flutterTts.setPitch(pitch);
+    await flutterTts.setSpeechRate(speechRate);
+    await flutterTts.setLanguage(langCode);
   }
 }

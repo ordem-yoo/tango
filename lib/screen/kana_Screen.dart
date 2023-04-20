@@ -25,16 +25,16 @@ class _KanaState extends State<Kana> {
             child: TabBar(
               indicatorColor: Color(0xffB5D99C),
               tabs: [
-                Tab(child: Text('平仮名', style: tableTab)),
-                Tab(child: Text('片仮名', style: tableTab)),
+                Tab(child: Text('平仮名', style: tableTabStyle)),
+                Tab(child: Text('片仮名', style: tableTabStyle)),
               ],
             ),
           ),
         ),
         body: TabBarView(
           children: [
-            SingleChildScrollView(child: hiraganaTable()),
-            SingleChildScrollView(child: katakanaTable()),
+            SingleChildScrollView(child: ganaKanaTable(true, context)),
+            SingleChildScrollView(child: ganaKanaTable(false, context)),
           ],
         ),
       ),

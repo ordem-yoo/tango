@@ -1,4 +1,4 @@
-// ignore_for_file: file_names, use_key_in_widget_constructors, prefer_const_constructors, must_be_immutable
+// ignore_for_file: file_names, use_key_in_widget_constructors, prefer_const_constructors, must_be_immutable, no_logic_in_create_state
 
 // Packages
 import 'package:flutter/material.dart';
@@ -6,7 +6,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 //constants
-import '../class/class.dart';
+import '../class/bookList.dart';
 import '../constants.dart';
 import '../screen/tango_Screen.dart';
 
@@ -58,7 +58,7 @@ class _UnitListState extends State<UnitList> {
                       child: Text(
                         "${unitIndex + 1}",
                         textAlign: TextAlign.center,
-                        style: listNum,
+                        style: listNumStyle,
                       ),
                     ),
                     title: SingleChildScrollView(
@@ -66,7 +66,7 @@ class _UnitListState extends State<UnitList> {
                       child: Text(
                         snapshot.data!.book[unitNumber]["unit"][unitIndex]
                             ["title"],
-                        style: listJp,
+                        style: listJpStyle,
                       ),
                     ),
                     subtitle: snapshot.data!.book[unitNumber]["unit"][unitIndex]
@@ -75,7 +75,7 @@ class _UnitListState extends State<UnitList> {
                         ? Text(
                             snapshot.data!.book[unitNumber]["unit"][unitIndex]
                                 ["subtitle"],
-                            style: listKr)
+                            style: listKrStyle)
                         : null,
                     trailing: Padding(
                       padding: EdgeInsets.symmetric(horizontal: 8.0),
