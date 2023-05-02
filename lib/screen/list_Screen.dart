@@ -4,20 +4,19 @@
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:tango/constants.dart';
 
 // Widget&Class
-import 'package:tango/customWidgets/unitList.dart';
-import 'package:tango/main.dart';
-import '../class/bookList.dart';
+import '../customWidgets/unitList.dart';
+import '../class/list.dart';
+import '../constants.dart';
 
 int unitLength = 0;
 Future<BookList> fetchBookList() async {
-  final response = await http.get(Uri.parse(link));
+  final response = await http.get(Uri.parse(tangoLink));
   if (response.statusCode == 200) {
     return BookList.fromJson(jsonDecode(response.body));
   } else {
-    throw Exception('Failed to load album');
+    throw Exception('失敗! x.x');
   }
 }
 
@@ -53,28 +52,37 @@ class _BookInfoState extends State<BookInfo> {
           for (int n = 0; n < unitLength; n++) {
             tabbar.add(
               Tab(
-                  child: Text(snapshot.data!.book[n]["booktitle"],
-                      style: TextStyle(
-                          fontSize: 25, fontFamily: 'ZenKakuGothicAntique'))),
+                  child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 16.0),
+                child: Text(
+                  snapshot.data!.book[n]["booktitle"],
+                  style: TextStyle(
+                    fontSize: 25,
+                  ),
+                ),
+              )),
             );
           }
           return DefaultTabController(
-            length: unitLength,
-            child: Scaffold(
-              appBar: AppBar(
-                automaticallyImplyLeading: false,
-                backgroundColor: Color(0xffB5D99C),
-                flexibleSpace: SafeArea(
-                  child: TabBar(
-                    isScrollable: true,
-                    indicatorColor: Colors.white,
-                    tabs: tabbar,
+              length: unitLength,
+              child: Scaffold(
+                appBar: AppBar(
+                  automaticallyImplyLeading: false,
+                  backgroundColor: Color(0xffb5d99c),
+                  flexibleSpace: SafeArea(
+                    child: TabBar(
+                      indicatorSize: TabBarIndicatorSize.tab,
+                      labelColor: Colors.black,
+                      unselectedLabelColor: Colors.white,
+                      dividerColor: Color(0xffB5D99C),
+                      isScrollable: true,
+                      indicatorColor: Colors.green,
+                      tabs: tabbar,
+                    ),
                   ),
                 ),
-              ),
-              body: TabBarView(children: unitList),
-            ),
-          );
+                body: TabBarView(children: unitList),
+              ));
         } else if (snapshot.hasError) {
           return Text('${snapshot.error}');
         }

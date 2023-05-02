@@ -2,11 +2,9 @@
 
 // Package
 import 'package:flutter/material.dart';
-import 'package:tango/screen/list_Screen.dart';
 
 // Dart file
-import '../constants.dart';
-import 'kana_Screen.dart';
+import '../customWidgets/home_Screen_Button.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -38,43 +36,10 @@ class _HomeState extends State<Home> {
             ),
             SizedBox(height: 80),
             // Button 1
-            Padding(
-              padding: EdgeInsets.fromLTRB(32.0, 16.0, 32.0, 16.0),
-              child: Container(
-                width: double.infinity,
-                decoration: BoxDecoration(
-                    color: Color(0xffE65F5c),
-                    borderRadius: BorderRadius.circular(15)),
-                child: TextButton(
-                  child: Text("単語暗記", style: homeButton),
-                  onPressed: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) {
-                      return BookInfo();
-                    }));
-                  },
-                ),
-              ),
-            ),
-            // Button 2
-            Padding(
-              padding: EdgeInsets.fromLTRB(32.0, 16.0, 32.0, 16.0),
-              child: Container(
-                width: double.infinity,
-                decoration: BoxDecoration(
-                    color: Color(0xffE65F5c),
-                    borderRadius: BorderRadius.circular(15)),
-                child: TextButton(
-                  child: Text("仮名", style: homeButton),
-                  onPressed: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) {
-                      return Kana();
-                    }));
-                  },
-                ),
-              ),
-            ),
+            menuButton("単語暗記", context),
+            menuButton("漢字暗記", context),
+            menuButton("仮名", context),
+            menuButton("小テスト", context),
           ],
         ),
       ),

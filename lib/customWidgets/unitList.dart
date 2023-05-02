@@ -6,12 +6,12 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 //constants
-import '../class/bookList.dart';
+import '../class/list.dart';
 import '../constants.dart';
 import '../screen/tango_Screen.dart';
 
 Future<BookList> fetchBookList() async {
-  final response = await http.get(Uri.parse(link));
+  final response = await http.get(Uri.parse(tangoLink));
 
   if (response.statusCode == 200) {
     return BookList.fromJson(jsonDecode(response.body));
@@ -21,8 +21,8 @@ Future<BookList> fetchBookList() async {
 }
 
 class UnitList extends StatefulWidget {
-  int unitTitleNumber;
   UnitList({required this.unitTitleNumber});
+  int unitTitleNumber;
 
   @override
   State<UnitList> createState() => _UnitListState(unitNumber: unitTitleNumber);

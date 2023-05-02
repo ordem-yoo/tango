@@ -13,3 +13,15 @@ class BookList {
     );
   }
 }
+
+class KanjiList {
+  var data;
+
+  KanjiList({required this.data});
+
+  factory KanjiList.fromJson(Map<String, dynamic> json) {
+    return KanjiList(
+      data: json["data"],
+    );
+  }
+}

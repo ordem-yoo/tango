@@ -9,10 +9,10 @@ import 'package:http/http.dart' as http;
 // Widget&Class
 import 'package:tango/constants.dart';
 import 'package:tango/screen/list_Screen.dart';
-import '../class/bookList.dart';
+import '../class/list.dart';
 
 Future<BookList> fetchBookList() async {
-  final response = await http.get(Uri.parse(link));
+  final response = await http.get(Uri.parse(tangoLink));
 
   if (response.statusCode == 200) {
     return BookList.fromJson(jsonDecode(response.body));
@@ -74,53 +74,60 @@ class _TangoState extends State<Tango> {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Padding(
-                            padding: EdgeInsets.symmetric(
-                                vertical: 30.0, horizontal: 30.0),
-                            child: Text(
-                              tangoJson[tangoNumber]["kanji"]
-                                  .replaceAll('を', 'を '),
-                              style: kanjiStyle,
-                              textAlign: TextAlign.center,
+                          Expanded(
+                            flex: 1,
+                            child: Center(
+                              child: Text(
+                                tangoJson[tangoNumber]["kanji"]
+                                    .replaceAll('を', 'を '),
+                                style: kanjiStyle,
+                                textAlign: TextAlign.center,
+                              ),
                             ),
                           ),
-                          Padding(
-                            padding: EdgeInsets.symmetric(
-                                vertical: 30.0, horizontal: 40.0),
+                          Expanded(
+                            flex: 1,
                             child: tangoJson[tangoNumber]["hiragana"] != null
-                                ? Text(
-                                    tangoJson[tangoNumber]["hiragana"],
-                                    style: ganaKanaStyle,
-                                    textAlign: TextAlign.center,
+                                ? Center(
+                                    child: Text(
+                                      tangoJson[tangoNumber]["hiragana"],
+                                      style: ganaKanaStyle,
+                                      textAlign: TextAlign.center,
+                                    ),
                                   )
-                                : null,
+                                : Center(child: Text("")),
                           ),
-                          Padding(
-                            padding: EdgeInsets.symmetric(
-                                vertical: 30.0, horizontal: 40.0),
-                            child: Text(
-                              tangoJson[tangoNumber]["pronunciation"],
-                              style: pronunciationStyle,
-                              textAlign: TextAlign.center,
+                          Expanded(
+                            flex: 1,
+                            child: Center(
+                              child: Text(
+                                tangoJson[tangoNumber]["pronunciation"],
+                                style: pronunciationStyle,
+                                textAlign: TextAlign.center,
+                              ),
                             ),
                           ),
-                          Padding(
-                            padding: EdgeInsets.symmetric(
-                                vertical: 30.0, horizontal: 50.0),
-                            child: Text(
-                              tangoJson[tangoNumber]["korean"]
-                                  .replaceAll(', ', '\n'),
-                              style: koreanStyle,
-                              textAlign: TextAlign.center,
+                          Expanded(
+                            flex: 2,
+                            child: Center(
+                              child: Text(
+                                tangoJson[tangoNumber]["korean"]
+                                    .replaceAll(', ', '\n'),
+                                style: koreanStyle,
+                                textAlign: TextAlign.center,
+                              ),
                             ),
                           ),
-                          IconButton(
-                              icon: Icon(Icons.volume_up_rounded, size: 40),
-                              onPressed: () async {
-                                initSetting();
-                                await flutterTts
-                                    .speak(tangoJson[tangoNumber]["kanji"]);
-                              }),
+                          Expanded(
+                            flex: 1,
+                            child: IconButton(
+                                icon: Icon(Icons.volume_up_rounded, size: 40),
+                                onPressed: () async {
+                                  initSetting();
+                                  await flutterTts
+                                      .speak(tangoJson[tangoNumber]["kanji"]);
+                                }),
+                          ),
                         ],
                       ),
                     ),

@@ -24,6 +24,7 @@ class _KanaState extends State<Kana> {
           flexibleSpace: SafeArea(
             child: TabBar(
               indicatorColor: Color(0xffB5D99C),
+              dividerColor: Colors.white,
               tabs: [
                 Tab(child: Text('平仮名', style: tableTabStyle)),
                 Tab(child: Text('片仮名', style: tableTabStyle)),

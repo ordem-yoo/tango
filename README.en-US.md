@@ -32,7 +32,10 @@ Application development for studying Japanese.
 <br><br>
 
 ### version
-**Ver 1.0**
+**Ver 1.0.0**
 - Implementation of a vocabulary book for each book and unit.
-- Hiragana, Katakana table implementation
+- Hiragana, Katakana table implementation.
+
+- **Ver 1.1.0**
+- add Hiragana, Katakan stroke animation.
 <br><br>
