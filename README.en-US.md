@@ -45,4 +45,5 @@ Application development for studying Japanese.
 **Ver 1.2.0**
 - Delete words other than JLPT.
 - Registration of Kanji by grade.
+- Add Kanji stroke animation.
 <br><br>
