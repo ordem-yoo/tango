@@ -29,6 +29,9 @@ Application development for studying Japanese.
 
 ### Used package
 - [http 0.13.5](https://pub.dev/packages/http)
+- [flutter_tts ^3.6.3](https://pub.dev/packages/flutter_tts)
+- [kanji_drawing_animation ^0.5.0+1](https://pub.dev/packages/kanji_drawing_animation)
+- [font_awesome_flutter ^10.4.0](https://pub.dev/packages/font_awesome_flutter)
 <br><br>
 
 ### version
@@ -37,5 +40,9 @@ Application development for studying Japanese.
 - Hiragana, Katakana table implementation.
 
 - **Ver 1.1.0**
-- add Hiragana, Katakan stroke animation.
+- Add Hiragana, Katakana stroke animation.
+
+**Ver 1.2.0**
+- Delete words other than JLPT.
+- Registration of Kanji by grade.
 <br><br>

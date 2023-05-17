@@ -27,13 +27,20 @@
 
 ### 使用したパッケージ
 - [http 0.13.5](https://pub.dev/packages/http)
+- [flutter_tts ^3.6.3](https://pub.dev/packages/flutter_tts)
+- [kanji_drawing_animation ^0.5.0+1](https://pub.dev/packages/kanji_drawing_animation)
+- [font_awesome_flutter ^10.4.0](https://pub.dev/packages/font_awesome_flutter)
 <br><br>
 
 ### バージョン
 **Ver 1.0.0**
 - 各本を単元別に分類して単語帳を実装
-- ひらがな·カタカナ表 実装
+- ひらがな·カタカナ表実装
 
 **Ver 1.1.0**
 - ひらがな、カタカナストロークアニメーションを追加しました。
+
+**Ver 1.2.0**
+- JLPT以外の単語削除
+- JLPT級数別漢字表登録
 <br><br>

@@ -27,6 +27,9 @@
 
 ### 사용한 패키지
 - [http 0.13.5](https://pub.dev/packages/http)
+- [flutter_tts ^3.6.3](https://pub.dev/packages/flutter_tts)
+- [kanji_drawing_animation ^0.5.0+1](https://pub.dev/packages/kanji_drawing_animation)
+- [font_awesome_flutter ^10.4.0](https://pub.dev/packages/font_awesome_flutter)
 <br><br>
 
 ### 버전
@@ -36,4 +39,8 @@
 
 **Ver 1.1.0**
 - 히라가나, 가타카나 드로잉 애니메이션 추가
+
+**Ver 1.2.0**
+- JLPT 이외 단어 삭제
+- JLPT 급수별 한자표 등록
 <br><br>
