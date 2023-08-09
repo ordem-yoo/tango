@@ -76,9 +76,8 @@ class _KanjiState extends State<Kanji> {
                                           MainAxisAlignment.spaceEvenly,
                                       children: [
                                         Text(
-                                          "${snapshot.data!.data[n]["contents"][(4 * rowindex) + colindex]["kanji"]}",
-                                          style: tableJpStyle,
-                                        ),
+                                            "${snapshot.data!.data[n]["contents"][(4 * rowindex) + colindex]["kanji"]}",
+                                            style: tableJpStyle),
                                         Text(
                                             snapshot.data!.data[n]["contents"][
                                                             (4 * rowindex) +

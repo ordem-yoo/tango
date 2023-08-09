@@ -56,6 +56,13 @@ class _TangoState extends State<Tango> {
     setState(() {});
   }
 
+  void initSetting() async {
+    await flutterTts.setVolume(volume);
+    await flutterTts.setPitch(pitch);
+    await flutterTts.setSpeechRate(speechRate);
+    await flutterTts.setLanguage(langCode);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -195,12 +202,5 @@ class _TangoState extends State<Tango> {
             }),
       ),
     );
-  }
-
-  void initSetting() async {
-    await flutterTts.setVolume(volume);
-    await flutterTts.setPitch(pitch);
-    await flutterTts.setSpeechRate(speechRate);
-    await flutterTts.setLanguage(langCode);
   }
 }

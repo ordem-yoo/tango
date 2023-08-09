@@ -64,25 +64,26 @@ class _BookInfoState extends State<BookInfo> {
             );
           }
           return DefaultTabController(
-              length: unitLength,
-              child: Scaffold(
-                appBar: AppBar(
-                  automaticallyImplyLeading: false,
-                  backgroundColor: Color(0xffb5d99c),
-                  flexibleSpace: SafeArea(
-                    child: TabBar(
-                      indicatorSize: TabBarIndicatorSize.tab,
-                      labelColor: Colors.black,
-                      unselectedLabelColor: Colors.white,
-                      dividerColor: Color(0xffB5D99C),
-                      isScrollable: true,
-                      indicatorColor: Colors.green,
-                      tabs: tabbar,
-                    ),
+            length: unitLength,
+            child: Scaffold(
+              appBar: AppBar(
+                automaticallyImplyLeading: false,
+                backgroundColor: Color(0xffb5d99c),
+                flexibleSpace: SafeArea(
+                  child: TabBar(
+                    indicatorSize: TabBarIndicatorSize.tab,
+                    labelColor: Colors.black,
+                    unselectedLabelColor: Colors.white,
+                    dividerColor: Color(0xffB5D99C),
+                    isScrollable: true,
+                    indicatorColor: Colors.green,
+                    tabs: tabbar,
                   ),
                 ),
-                body: TabBarView(children: unitList),
-              ));
+              ),
+              body: TabBarView(children: unitList),
+            ),
+          );
         } else if (snapshot.hasError) {
           return Text('${snapshot.error}');
         }
